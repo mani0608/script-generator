@@ -66,7 +66,7 @@
         <div class="actions">
             <button type="button" mat-button color="accent" (click)="showMore()" *ngIf="recordRange < sourceRecords.length">Show
                 more</button>
-            <button type="button" mat-button color="primary" (click)="saveAndClose()" cdkFocusInitial>Save & Close</button>
+            <button type="button" mat-button (click)="saveAndClose()" cdkFocusInitial>Save & Close</button>
             <button type="button" mat-button color="warn" (click)="close()">Close without Saving</button>
         </div>
     </div>

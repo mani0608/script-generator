@@ -1,0 +1,38 @@
+var Array = require('collections/shim-array');
+require("collections/listen/array-changes");
+
+class SQLDestinationTableQuery {
+
+    constructor() {
+        this.queryIndex = null;
+        this.destinationTable = null;
+        this.destinationTableQuery = null;
+    }
+
+    setQueryIndex(index) {
+        this.queryIndex = index;
+    }
+
+    getQueryIndex() {
+        return this.queryIndex;
+    }
+
+    setDestinationTable(table) {
+        this.destinationTable = table;
+    }
+
+    getDestinationTable() {
+        return this.destinationTable;
+    }
+
+    setDestinationTableQuery(query) {
+        this.destinationTableQuery = query;
+    }
+
+    getDestinationTableQuery() {
+        return this.destinationTableQuery;
+    }
+
+}
+
+module.exports = SQLDestinationTableQuery;
