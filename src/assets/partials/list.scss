@@ -1,0 +1,44 @@
+@mixin list-theme ($theme) {
+    .list-group {
+        .list-group-item {
+            background-color: mat-color(map-get($theme, background), background, .3);
+            &.active {
+                background-color: mat-color(map-get($theme, background), background, .3);
+            }
+            &:hover {
+                background-color: mat-color(map-get($theme, accent));
+            }
+        }
+        .list-group-item-action,
+        .list-group-item.active {
+            color: mat-color(map-get($theme, foreground), text);
+        }
+        .list-group-item.active {
+            background-color: mat-color(map-get($theme, accent));
+            color: white;
+            border: 0px;
+        }
+    }
+    li:hover {
+        background-color: mat-color(map-get($theme, background), background, .3);
+        cursor: pointer;
+    }
+    li.active {
+        background-color: mat-color(map-get($theme, background), background, .3);
+    }
+    .dual-list-source {
+        background-color: mat-color(map-get($theme, background), app-bar);
+    }
+    .dual-list-target {
+        background-color: mat-color(map-get($theme, background), app-bar);
+    }
+    li.disabled {
+        &:hover {
+            background: transparent;
+            cursor: default;
+        }
+        > span {
+            color: mat-color(map-get($theme, foreground), disabled) !important;
+        }
+    }
+}

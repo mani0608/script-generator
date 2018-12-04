@@ -1,0 +1,30 @@
+<div class="history-container container">
+  <section class="filter-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h2><span [innerHTML]="title"></span></h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="filter-list-container">
+          <app-dual-list [source]="names" [target]="versions" (fetchTarget)="getVersions($event)" (persistTarget)="persistTarget($event)"></app-dual-list>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <button (click)="search()" mat-icon-button color="primary" matTooltip="Search history" matTooltipPosition="below">
+          <mat-icon fontSet="fa" fontIcon="fa-search"></mat-icon>
+        </button>
+        <button (click)="clear()" mat-icon-button color="primary" matTooltip="Clear Results" matTooltipPosition="below">
+          <mat-icon fontSet="fa" fontIcon="fa-times"></mat-icon>
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </section>
+</div>
+<section class="result-container">
+  <router-outlet></router-outlet>
+</section>
+<!-- <div *ngIf="docs && docs?.length > 0">
+  <app-results [docs]="docs" [docName]="selectedName" [docVersion]="selectedVersion"></app-results>
+</div> -->

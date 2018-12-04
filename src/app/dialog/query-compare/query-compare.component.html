@@ -1,0 +1,73 @@
+<div class="query-compare-container">
+    <h1 mat-dialog-title><span [innerHTML]="title"></span></h1>
+    <div mat-dialog-content>
+        <div class="row version-section">
+            <div class="col">
+                <strong><span [innerHTML]="srcData.impVersion"></span></strong>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="targetVersion" (selectionChange)="fetchTarget()">
+                        <mat-option *ngFor="let version of getFilterVersions()" [value]="version">
+                            <span [innerHTML]="version"></span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="srcData.isMultiCompare" class="col-md-1"></div>
+        </div>
+
+        <div class="row" *ngFor="let record of records | slice: 0:recordRange; let i = index">
+            <div class="col">
+                <div class="src-editor-section">
+
+                    <quill-editor #srceditor (onEditorCreated)="onSourceEditorCreated(i)" (onContentChanged)="onSourceContentChanged($event, i, record)"
+                        [ngModel]="record.srcQuery" [modules]="modules" [formats]="formats"></quill-editor>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="tgt-editor-section">
+                    <quill-editor #tgteditor (onEditorCreated)="onTargetEditorCreated(i)" (onContentChanged)="onTargetContentChanged($event, i, record)"
+                        [ngModel]="record.tgtQuery" [modules]="modules" [formats]="formats"></quill-editor>
+                </div>
+            </div>
+
+            <div *ngIf="srcData.isMultiCompare" class="col-md-1 d-flex align-items-center">
+                <div class="compare-save-single">
+                    <button mat-mini-fab color="primary">
+                        <mat-icon matTooltip="Save Changes" (click)="saveSingle(record, i)" matTooltipPosition="below"
+                            fontSet="fa" fontIcon="fa-save"></mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn">
+                        <mat-icon matTooltip="Reset Changes" (click)="resetSingle(record, i)" matTooltipPosition="below"
+                            fontSet="fa" fontIcon="fa-refresh"></mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="summary">
+            <span>Total Records:</span>
+            <span [innerHTML]="sourceRecords.length"></span>
+            <span>Records Shown:</span>
+            <span [innerHTML]="recordRange"></span>
+        </div>
+        <div class="range-config">
+            <mat-form-field>
+                <mat-select [(ngModel)]="recordStep">
+                    <mat-option [value]="5">5</mat-option>
+                    <mat-option [value]="10">10</mat-option>
+                    <mat-option [value]="15">15</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="actions">
+            <button type="button" mat-button color="accent" (click)="showMore()" *ngIf="recordRange < sourceRecords.length">Show
+                more</button>
+            <button type="button" mat-button color="primary" (click)="saveAndClose()" cdkFocusInitial>Save & Close</button>
+            <button type="button" mat-button color="warn" (click)="close()">Close without Saving</button>
+        </div>
+    </div>
+</div>

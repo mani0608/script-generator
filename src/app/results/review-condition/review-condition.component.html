@@ -1,0 +1,230 @@
+<div class="row review-conditions-container" [ngSwitch]="switch">
+  <div class="col-auto not-equals-section" *ngSwitchCase="'<>'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'neqCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'neqCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.neqCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.neqCondition">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto equals-section" *ngSwitchCase="'='">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'eqCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'eqCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.eqCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.eqCondition">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto not-null-section" *ngSwitchCase="'IS NOT NULL'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'isNotNullCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'isNotNullCondition')">
+        </ng-select>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto null-section" *ngSwitchCase="'IS NULL'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'isNullCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'isNullCondition')">
+        </ng-select>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto not-in-section" *ngSwitchCase="'NOT IN'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'notInCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'notInCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.notInCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.notInCondition">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto in-section" *ngSwitchCase="'IN'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'inCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'inCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.inCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.inCondition">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto not-like-section" *ngSwitchCase="'NOT LIKE'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'notLikeCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'notLikeCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.notLikeCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.notLikeCondition">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto like-section" *ngSwitchCase="'LIKE'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'likeCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="operators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="operatorChanged($event, 'likeCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.likeCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.likeCondition">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto like-section" *ngSwitchCase="'CHARINDEX'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'charIdxCondition')">
+        </ng-select>
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="icTypes" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="typeChanged($event, 'charIdxCondition')">
+        </ng-select>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">(</div>
+      </div>
+      <div *ngIf="condition.charIdxCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.charIdxCondition.condValue">
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">,</div>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">)</div>
+      </div>
+      <div *ngIf="condition.charIdxCondition" class="col-auto">
+        <ng-select [items]="icOperators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.charIdxCondition.condOperator"
+          (change)="operatorChanged($event, 'charIdxCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.charIdxCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.charIdxCondition.condOperand">
+      </div>
+    </div>
+  </div>
+  <div class="col-auto like-section" *ngSwitchCase="'PATINDEX'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <ng-select [items]="types" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.whereConditionType"
+          (change)="typeChanged($event, 'patIdxCondition')">
+        </ng-select>
+      </div>
+      <div class="col-auto">
+        <ng-select [items]="icTypes" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.activeCondition"
+          (change)="typeChanged($event, 'patIdxCondition')">
+        </ng-select>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">(</div>
+      </div>
+      <div *ngIf="condition.patIdxCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.patIdxCondition.condValue">
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">,</div>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.field">
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">)</div>
+      </div>
+      <div *ngIf="condition.patIdxCondition" class="col-auto">
+        <ng-select [items]="icOperators" [clearable]="false" bindLabel="label" bindValue="value" [(ngModel)]="condition.patIdxCondition.condOperator"
+          (change)="operatorChanged($event, 'patIdxCondition')">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.patIdxCondition" class="col-auto">
+        <input AutoSizeInput type="text" pInputText [(ngModel)]="condition.patIdxCondition.condOperand">
+      </div>
+    </div>
+  </div>
+</div>

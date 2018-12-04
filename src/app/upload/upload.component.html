@@ -1,0 +1,40 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="upload-container container">
+    <section class="file-upload">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h2><span [innerHTML]="title"></span></h2>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <section class="file-upload-input">
+                    <mat-form-field>
+                        <input matInput placeholder="Import Schema Name" [(ngModel)]="importSchemaName" class="input-isn">
+                    </mat-form-field>
+                </section>
+                <section class="upload-ctrl">
+                    <dropzone [config]="config" [message]="'Click or drag images here to upload'" (sending)="onSendingFile($event)"
+                        (addedFile)="onFileAdded($event)" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+                </section>
+                <section class="qb-cb-ctrl d-none">
+                    <mat-checkbox class="chk-qb-review" [(ngModel)]="isQbReview" (onChange)="qbFieldToggle()">QueryBuilder
+                        Review?</mat-checkbox>
+                </section>
+            </mat-card-content>
+            <mat-card-footer>
+                <button mat-raised-button color="primary" (click)="uploadFile($event)" matTooltip="Upload Selected Files"
+                    matTooltipPosition="below" [disabled]="isUploaded && !isAdded">
+                    Upload
+                </button>
+                <button (click)="removeFile($event)" mat-raised-button matTooltip="Remove Selected Files"
+                    matTooltipPosition="below" [disabled]="!isUploaded">
+                    Remove
+                </button>
+            </mat-card-footer>
+        </mat-card>
+    </section>
+</div>
+<section class="result-container">
+    <router-outlet></router-outlet>
+</section>

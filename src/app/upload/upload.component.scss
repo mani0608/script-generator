@@ -1,0 +1,38 @@
+@import 'theme.scss';
+.upload-container {
+    mat-card {
+        background: transparent;
+        box-shadow: none;
+    }
+    mat-card-header {
+        display: inline-flex;
+    }
+    mat-card-footer>button {
+        margin: .5em;
+    }
+    ::ng-deep dropzone {
+        .dz-message,
+        .dz-details {
+            border: none !important;
+            border-radius: 100em;
+        }
+        .dz-filename>span {
+            border: 0px !important;
+            background: transparent !important;
+        }
+        .dz-progress {
+            border: 0px !important;
+            border-radius: 100rem !important;
+        }
+        .dz-size>span {
+            border: 0px !important;
+            background: transparent !important;
+            strong {
+                font-weight: normal;
+            }
+        }
+    }
+    .file-upload {
+        text-align: center;
+    }
+}

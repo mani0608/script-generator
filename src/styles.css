@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+node-menu li div {
+    display: inline-flex !important;
+}
+
+div.node-menu {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    position: inherit !important;
+}
+
+.node-menu .node-menu-content {
+    width: auto !important;
+}  
+
+@media screen and (min-width: 992px) {
+    .modal-lg {
+        max-width: 80% !important;
+    }
+}
+
+hr {
+    margin-top: 0px;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+.ui-dialog-content {
+    height: auto !important;  
+    max-width: 1200px !important;
+    max-height: 500px !important;
+  } 
+
+
+  #upload-content .ui-card-body, 
+  #upload-content-actions .ui-card-body,
+  #history-section .ui-card-body {
+      background-color: #f8f9fa;
+  }
+
+  #upload-content-actions .ui-card-body {
+      width: 50rem !important;
+  }
+
+  label.ui-chkbox-label {
+      margin-bottom: 0rem;
+  }
+
+  /* .qb-content .ui-dropdown {
+    width: 150px !important;
+  } */
+
+  ng-select .ng-dropdown-panel,
+  ng-select .ng-select-container {
+      width: auto !important;
+  }
+
+  #review-scripts .ui-tree-container {
+      overflow: hidden !important;
+  }
+
+  #review-scripts .ui-widget-content {
+      border: 0px !important;
+      width: 100%;
+  }
+
+  #upload-content .ui-widget-content,
+  #history-section .ui-widget-content {
+      border: 0px;
+  }
+
+  .ui-card-shadow {
+      box-shadow: unset !important;
+      -webkit-box-shadow: unset !important;
+  }
+
+  .pointer {
+      cursor: pointer;
+  }

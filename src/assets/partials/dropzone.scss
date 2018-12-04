@@ -1,0 +1,16 @@
+@mixin dropzone-theme ($theme) {
+    dropzone {
+        .dz-details {
+            background-color: mat-color(map-get($theme, background), background, .3) !important;
+        }
+        .dz-progress {
+            background-color: mat-color(map-get($theme, accent)) !important;
+        }
+        .dz-wrapper, .dz-details {
+            color: mat-color(map-get($theme, foreground), text) !important;
+        }
+        .dz-message {
+            background-color: mat-color(map-get($theme, background), unselected-chip) !important;
+        }
+    }
+}

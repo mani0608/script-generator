@@ -1,0 +1,20 @@
+<section class="messages-container">
+  <div class="mc-header">
+    <mat-icon class="sb-close" fontSet="fa" fontIcon="fa-times" (click)="close()"></mat-icon>
+  </div>
+  <ul class="error">
+    <li *ngFor="let message of errorMessages.details; index as i">
+      <span class="text-danger" [innerHTML]="message"></span>
+    </li>
+  </ul>
+  <ul class="warn">
+    <li *ngFor="let message of warnMessages.details; index as i">
+      <span class="text-warning" [innerHTML]="message"></span>
+    </li>
+  </ul>
+  <ul class="info">
+    <li *ngFor="let message of infoMessages.details; index as i">
+      <span class="text-info" [innerHTML]="message"></span>
+    </li>
+  </ul>
+</section>

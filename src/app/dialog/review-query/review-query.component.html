@@ -1,0 +1,43 @@
+<div class="rq-dialog-container">
+  <h1 mat-dialog-title><span [innerHTML]="title"></span></h1>
+  <div mat-dialog-content>
+    <div *ngIf="list">
+      <div *ngIf="isEditor; then editorsection else resultsection"></div>
+      <ng-template #resultsection>
+        <table class="table">
+          <thead class="thead">
+            <tr class="d-flex">
+              <th scope="col" class="col-md-1">#</th>
+              <th scope="col" class="col-md-3">Table Name</th>
+              <th scope="col" class="col-md-8">Query</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list; let i = index" class="d-flex">
+              <td scope="row" class="col-md-1">
+                <span [innerHTML]="i+1"></span>
+              </td>
+              <td class="col-md-3">
+                <span [innerHTML]="item.destinationTable | ellipsis:22"></span>
+              </td>
+              <td class="col-md-8" (dblclick)="showEditor(i)">
+                <span style="white-space: pre-line" [innerHTML]="item.destinationTableQuery"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+      <ng-template #editorsection>
+       <div class="editor-section">
+          <quill-editor #editor (onEditorCreated)="onEditorCreated($event)" (onContentChanged)="onContentChanged($event)"
+            [ngModel]="editorText" [modules]="modules"></quill-editor>
+        </div> 
+      </ng-template>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button type="button" *ngIf="isEditor" mat-button (click)="hideEditor()">Back</button>
+    <button type="button" [disabled]="editIndex === undefined" mat-button (click)="saveAndClose()" cdkFocusInitial>Save & Close</button>
+    <button type="button" mat-button (click)="closePopup()">Close without Saving</button>
+  </div>
+</div>

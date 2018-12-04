@@ -1,0 +1,380 @@
+<div class="row review-conditions-container" [ngSwitch]="switch">
+  <div class="col-auto not-equals-section" *ngSwitchCase="'<>'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'neqCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'neqCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.neqCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.neqCondition">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto equals-section" *ngSwitchCase="'='">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'eqCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'eqCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.eqCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.eqCondition">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto not-null-section" *ngSwitchCase="'IS NOT NULL'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'isNotNullCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'isNotNullCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto null-section" *ngSwitchCase="'IS NULL'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'isNullCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'isNullCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto not-in-section" *ngSwitchCase="'NOT IN'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'notInCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'notInCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.notInCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.notInCondition">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto in-section" *ngSwitchCase="'IN'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'inCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'inCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.inCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.inCondition">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto not-like-section" *ngSwitchCase="'NOT LIKE'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'notLikeCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'notLikeCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.notLikeCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.notLikeCondition">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto like-section" *ngSwitchCase="'LIKE'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'likeCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of operators" [value]="operator.value" [(ngModel)]="condition.activeCondition"
+              (change)="operatorChanged($event, 'likeCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.likeCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.likeCondition">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto like-section" *ngSwitchCase="'CHARINDEX'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'charIdxCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of icTypes" [value]="type.value" [(ngModel)]="condition.activeCondition"
+              (change)="typeChanged($event, 'charIdxCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">(</div>
+      </div>
+      <div *ngIf="condition.charIdxCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.charIdxCondition.condValue">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">,</div>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">)</div>
+      </div>
+      <div *ngIf="condition.charIdxCondition" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of icOperators" [value]="operator.value" [(ngModel)]="condition.charIdxCondition.condOperator"
+              (change)="operatorChanged($event, 'charIdxCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.charIdxCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.charIdxCondition.condOperand">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto like-section" *ngSwitchCase="'PATINDEX'">
+    <div class="row">
+      <div *ngIf="isTypeDisplayed" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type.value" [(ngModel)]="condition.whereConditionType"
+              (change)="typeChanged($event, 'patIdxCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let type of icTypes" [value]="type.value" [(ngModel)]="condition.activeCondition"
+              (change)="typeChanged($event, 'patIdxCondition')">
+              <span [innerHTML]="type.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">(</div>
+      </div>
+      <div *ngIf="condition.patIdxCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.patIdxCondition.condValue">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">,</div>
+      </div>
+      <div *ngIf="condition.field" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.field">
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">)</div>
+      </div>
+      <div *ngIf="condition.patIdxCondition" class="col-auto">
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let operator of icOperators" [value]="operator.value" [(ngModel)]="condition.patIdxCondition.condOperator"
+              (change)="operatorChanged($event, 'patIdxCondition')">
+              <span [innerHTML]="operator.label"></span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="condition.patIdxCondition" class="col-auto">
+        <mat-form-field>
+          <input matInput [(ngModel)]="condition.patIdxCondition.condOperand">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

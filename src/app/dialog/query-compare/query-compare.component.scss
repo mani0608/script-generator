@@ -1,0 +1,36 @@
+.query-compare-container {
+    .version-section {
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        mat-form-field {
+            width: 5rem !important;
+        }
+    }
+    .compare-save-single {
+        > button {
+            margin: .5em;
+        }
+
+        ::ng-deep button > .mat-button-wrapper {
+            line-height: inherit !important;
+        }
+    }
+
+    .mat-dialog-actions {
+        justify-content: space-between;
+
+        .summary > span {
+            padding-right: .5rem;
+
+            &:nth-child(odd) {
+                font-weight: 600;
+            }
+        }
+
+        mat-form-field {
+            width: 3rem !important;
+        }
+    }
+}

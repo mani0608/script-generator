@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+@import 'theme';
+/* poppins-regular - latin */
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('assets/fonts/poppins/poppins-v5-latin-regular.eot');
+    src: local('Poppins Regular'), local('Poppins-Regular'), url('assets/fonts/poppins/poppins-v5-latin-regular.eot?#iefix') format('embedded-opentype'), url('assets/fonts/poppins/poppins-v5-latin-regular.woff2') format('woff2'), url('assets/fonts/poppins/poppins-v5-latin-regular.woff') format('woff'), url('assets/fonts/poppins/poppins-v5-latin-regular.ttf') format('truetype'), url('assets/fonts/poppins/poppins-v5-latin-regular.svg#Poppins') format('svg');
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.section-header {
+    display: flex;
+    padding: .5rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 100em;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* background-color: mat-color(map-get($theme, accent)); */
+    &>div.header-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    h4 {
+        margin: 0px;
+    }
+}
+
+.action-items {
+    cursor: pointer;
+    padding: $spacer * .5;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    &.right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+    &.left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+    &.up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+    &.down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+button {
+    border-radius: 100em !important;
+}
+
+.mat-form-field-label {
+    text-align: center;
+}
+
+mat-form-field {
+    input {
+        text-align: center !important;
+    }
+}
+
+mat-expansion-panel {
+    /* background-color: rgba($component-background, .3) !important; */
+    mat-panel-title {
+        h5 {
+            margin: 0;
+        }
+    }
+    .mat-table {
+        background: transparent !important;
+        th {
+            padding: 0px !important;
+            margin: 0px !important;
+            text-align: center !important;
+        }
+        td {
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+    }
+}
+
+mat-dialog-container {
+    border-radius: 2rem !important;
+    .mat-dialog-actions {
+        justify-content: flex-end;
+    }
+}
+
+.drag-zone {
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    -webkit-app-region: drag;
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: .7s ease-in;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+*:focus {
+    outline: none !important;
+}

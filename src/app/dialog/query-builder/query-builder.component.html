@@ -1,0 +1,219 @@
+<div class="qb-dialog-container">
+  <h1 mat-dialog-title><span [innerHTML]="title"></span></h1>
+  <div mat-dialog-content>
+    <div *ngIf="itQuery" class="qb-content container-fluid">
+      <div class="row pb-2">
+        <div class="col-auto">
+          <div class="d-flex align-items-center justify-content-center p-2 content-left bg-primary text-white">SELECT</div>
+        </div>
+      </div>
+      <div class="row pb-2" *ngFor="let item of itQuery.insertFields; let i = index">
+        <div class="col-auto simple-field-control" *ngIf="isSimpleField(item)">
+          <div class="row pb-2">
+            <div *ngIf="item.pkPrefix" class="col-auto">
+              <input matInput [(ngModel)]="item.pkPrefix">
+            </div>
+            <div *ngIf="item.sourceFieldName" class="col-auto">
+              <input matInput [(ngModel)]="item.sourceFieldName">
+            </div>
+            <div *ngIf="item.concatValue" class="col-auto">
+              <input matInput [(ngModel)]="item.concatValue">
+            </div>
+            <div *ngIf="item.sourceAliasName" class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">AS</div>
+            </div>
+            <div *ngIf="item.sourceAliasName" class="col-auto">
+              <input matInput [(ngModel)]="item.sourceAliasName">
+            </div>
+          </div>
+        </div>
+        <div class="col-auto case-control" *ngIf="item.caseWhenCandidates.length > 0">
+          <div class="row pb-2">
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">CASE
+                WHEN</div>
+            </div>
+            <div class="col-auto d-flex justify-content-center">
+              <span (click)="add('caseWhenCandidates')" class="text-primary d-flex align-self-center fa fa-lg fa-plus-circle"
+                matTooltip="Add Condition" matTooltipPosition="below"></span>
+            </div>
+          </div>
+          <div class="row pb-2" *ngFor="let candidate of item.caseWhenCandidates; let j1 = index">
+            <div *ngIf="j1 > 0" class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">WHEN</div>
+            </div>
+            <div class="col-auto">
+              <div class="row pb-2" *ngFor="let cwc of candidate.conditions; let j2 = index">
+                <div class="col-auto">
+                  <app-review-condition [condition]="cwc" [switch]="cwc.activeCondition" comp="caseWhenCandidates"
+                    [spIdx]="i" [pIdx]="j1" [cIdx]="j2" [ddOptions]="getDDOptions('caseWhenCandidates')"
+                    (operandChange)="operandChanged($event)" (typeChange)="typeChanged($event, null, null, null, null)">
+                  </app-review-condition>
+                </div>
+                <div class="col-auto d-flex justify-content-center">
+                  <span (click)="remove('caseWhenCandidates', j1, j2)" class="text-primary d-flex align-self-center fa fa-lg fa-minus-circle"
+                    matTooltip="Remove Condition" matTooltipPosition="below"></span>
+                </div>
+              </div>
+              <div class="row pb-2">
+                <div class="col-auto">
+                  <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">THEN</div>
+                </div>
+                <div *ngIf="candidate.caseValue" class="col-auto case-field">
+                  <input matInput [(ngModel)]="candidate.caseValue">
+                </div>
+                <div class="col-auto">
+                  <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">ELSE</div>
+                </div>
+                <div *ngIf="candidate.elseValue != null" class="col-auto">
+                  <input matInput [(ngModel)]="candidate.elseValue">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-2 case-control-end">
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">
+                <span>END AS</span>
+                <span>&nbsp;</span>
+                <span [innerHTML]="item.sourceAliasName"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="item.concatCandidates.length > 0" class="col-auto concat-control">
+          <div class="row pb-2 concat-field">
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">CASE
+                WHEN</div>
+            </div>
+            <div *ngIf="item.sourceFieldName" class="col-auto concat-field-controls">
+              <input matInput [(ngModel)]="item.sourceFieldName">
+              <input matInput value="IS NOT NULL">
+            </div>
+          </div>
+          <div class="row pb-2">
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">THEN</div>
+            </div>
+            <div *ngIf="item.sourceFieldName" class="col-auto">
+              <input matInput [(ngModel)]="item.sourceFieldName">
+            </div>
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-right text-white">ELSE
+                EMPTY</div>
+            </div>
+          </div>
+          <div class="row pb-2 concat-field" *ngFor="let cc of item.concatCandidates; let k = index">
+            <div class="col-auto concat-field-content">
+              <div class="row pb-2">
+                <div class="col-auto">
+                  <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">CASE
+                    WHEN</div>
+                </div>
+                <div class="col-auto">
+                  <div class="fa fa-plus"></div>
+                </div>
+              </div>
+              <div class="row pb-2 concat-field-controls">
+                <div *ngIf="cc.fieldName" class="col-auto">
+                  <input matInput [(ngModel)]="cc.fieldName">
+                  <input matInput value="IS NOT NULL">
+                </div>
+              </div>
+              <div class="row pb-2">
+                <div class="col-auto">
+                  <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">THEN</div>
+                </div>
+                <div *ngIf="cc.fieldName" class="col-auto">
+                  <input matInput [(ngModel)]="cc.fieldName">
+                </div>
+                <div class="col-auto">
+                  <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">ELSE
+                    EMPTY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-2 concat-control-end">
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">
+                <span>END AS</span>
+                <span>&nbsp;</span>
+                <span [innerHTML]="item.sourceAliasName"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-2 from-content">
+        <div class="col-auto">
+          <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">FROM</div>
+        </div>
+        <div *ngIf="sourceTable" class="col-auto">
+          <input matInput [(ngModel)]="sourceTable">
+        </div>
+      </div>
+      <div *ngIf="itQuery.tableJoins.length > 0" class="row pb-2 join-content">
+        <div class="col-auto" *ngFor="let tj of itQuery.tableJoins; let k1 = index">
+          <div class="row pb-2">
+            <div class="col-auto">
+              <mat-form-field>
+                <mat-select>
+                  <mat-option *ngFor="let type of jTypes" [value]="type.value" [(ngModel)]="tj.joinType" (change)="typeChanged($event, 'tableJoins', 'joinType', k1, null)">
+                    <span [innerHTML]="type.label"></span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-auto">
+              <input matInput [(ngModel)]="tj.tableName">
+            </div>
+            <div class="col-auto">
+              <input matInput [(ngModel)]="tj.tableAlias">
+            </div>
+          </div>
+          <div class="row pb-2" *ngFor="let jc of tj.joinConditions; let k2 = index">
+            <div *ngIf="k2 == 0" class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-right text-white">ON</div>
+            </div>
+            <div class="col-auto">
+              <app-review-condition [condition]="jc" [switch]="jc.activeCondition" comp="tableJoins" [pIdx]="k1" [cIdx]="k2"
+                [ddOptions]="getDDOptions('tableJoins')" (operandChange)="operandChanged($event)" (typeChange)="typeChanged($event, null, null, null, null)">
+              </app-review-condition>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="itQuery.whereConditions.length > 0" class="row pb-2 where-content">
+        <div class="col-auto">
+          <div class="row pb-2">
+            <div class="col-auto">
+              <div class="d-flex justify-content-center align-items-center p-2 bg-primary content-left text-white">WHERE</div>
+            </div>
+            <div class="col-auto d-flex justify-content-center">
+              <span (click)="add('whereConditions')" class="text-primary d-flex align-self-center fa fa-lg fa-plus-circle"
+                matTooltip="Add Condition" matTooltipPosition="below"></span>
+            </div>
+          </div>
+          <div class="row pb-2" *ngFor="let wc of itQuery.whereConditions; let l = index">
+            <div class="col-auto">
+              <app-review-condition [condition]="wc" [switch]="wc.activeCondition" comp="whereConditions" [pIdx]="l"
+                [ddOptions]="getDDOptions('whereConditions')" (operandChange)="operandChanged($event)" (typeChange)="typeChanged($event, null, null, null, null)">
+              </app-review-condition>
+            </div>
+            <div class="col-auto d-flex justify-content-center">
+              <span (click)="remove('whereConditions', l, null)" class="text-primary d-flex align-self-center fa fa-lg fa-minus-circle"
+                matTooltip="Remove Condition" matTooltipPosition="below"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button type="button" (click)="closePopup()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" (click)="save()" class="btn btn-primary">Save changes</button>
+  </div>
+</div>

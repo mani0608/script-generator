@@ -1,0 +1,34 @@
+@import 'theme.scss'; 
+
+
+.dual-list-container {
+    display: grid;
+    grid-template-areas: "source target";
+    grid-template-rows: auto;
+    grid-gap: .5em;
+    background: transparent;
+    grid-auto-columns: minmax(25%, max-content);
+    align-items: flex-start;
+    justify-content: center;
+    ul {
+        li {
+            border: 0px;
+        }
+    }
+
+    section.dual-list-source {
+        height: auto;
+        max-height: 300px;
+        grid-area: source;
+        padding: .5em;
+        overflow-y: auto;
+    }
+
+    section.dual-list-target {
+        height: auto;
+        max-height: 300px;
+        grid-area: target;
+        padding: .5em;
+        overflow-y: auto;
+    }
+}

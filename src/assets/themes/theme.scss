@@ -1,0 +1,272 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~@angular/material/theming';
+@include mat-core();
+@import 'media-queries';
+@import 'list.scss';
+@import 'table.scss';
+@import 'dropzone.scss';
+@import 'custom-paging.scss';
+
+//Indigo-Pink light
+$my-app-indigo-light-primary: mat-palette($mat-indigo);
+$my-app-indigo-light-accent: mat-palette($mat-pink, A200);
+$my-app-indigo-light-warn: mat-palette($mat-red);
+$my-app-indigo-light-theme: mat-light-theme($my-app-indigo-light-primary, $my-app-indigo-light-accent, $my-app-indigo-light-warn);
+.indigo-light-theme {
+    @include angular-material-theme($my-app-indigo-light-theme);
+    @include list-theme ($my-app-indigo-light-theme);
+    @include table-theme ($my-app-indigo-light-theme);
+    @include dropzone-theme ($my-app-indigo-light-theme);
+    @include custom-paging-theme ($my-app-indigo-light-theme);
+    background-color: mat-color(map-get($my-app-indigo-light-theme, background), background, 1);
+    color: mat-color(map-get($my-app-indigo-light-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-indigo-light-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-indigo-light-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Indigo-Pink dark
+$my-app-indigo-dark-primary: mat-palette($mat-indigo);
+$my-app-indigo-dark-accent: mat-palette($mat-pink, A200);
+$my-app-indigo-dark-warn: mat-palette($mat-red);
+$my-app-indigo-dark-theme: mat-dark-theme($my-app-indigo-dark-primary, $my-app-indigo-dark-accent, $my-app-indigo-dark-warn);
+.indigo-dark-theme {
+    @include angular-material-theme($my-app-indigo-dark-theme);
+    @include list-theme ($my-app-indigo-dark-theme);
+    @include table-theme ($my-app-indigo-dark-theme);
+    @include dropzone-theme ($my-app-indigo-dark-theme);
+    @include custom-paging-theme ($my-app-indigo-dark-theme);
+    background-color: mat-color(map-get($my-app-indigo-dark-theme, background), background, 1);
+    color: mat-color(map-get($my-app-indigo-dark-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-indigo-dark-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-indigo-dark-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Purple-Amber light
+$my-app-purple-light-primary: mat-palette($mat-deep-purple);
+$my-app-purple-light-accent: mat-palette($mat-amber, A200);
+$my-app-purple-light-warn: mat-palette($mat-red);
+$my-app-purple-light-theme: mat-light-theme($my-app-purple-light-primary, $my-app-purple-light-accent, $my-app-purple-light-warn);
+.purple-light-theme {
+    @include angular-material-theme($my-app-purple-light-theme);
+    @include list-theme ($my-app-purple-light-theme);
+    @include table-theme ($my-app-purple-light-theme);
+    @include dropzone-theme ($my-app-purple-light-theme);
+    @include custom-paging-theme ($my-app-purple-light-theme);
+    background-color: mat-color(map-get($my-app-purple-light-theme, background), background, 1);
+    color: mat-color(map-get($my-app-purple-light-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-purple-light-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-purple-light-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Purple-Amber dark
+$my-app-purple-dark-primary: mat-palette($mat-deep-purple);
+$my-app-purple-dark-accent: mat-palette($mat-amber, A200);
+$my-app-purple-dark-warn: mat-palette($mat-red);
+$my-app-purple-dark-theme: mat-dark-theme($my-app-purple-dark-primary, $my-app-purple-dark-accent, $my-app-purple-dark-warn);
+.purple-dark-theme {
+    @include angular-material-theme($my-app-purple-dark-theme);
+    @include list-theme ($my-app-purple-dark-theme);
+    @include table-theme ($my-app-purple-dark-theme);
+    @include dropzone-theme ($my-app-purple-dark-theme);
+    @include custom-paging-theme ($my-app-purple-dark-theme);
+    background-color: mat-color(map-get($my-app-purple-dark-theme, background), background, 1);
+    color: mat-color(map-get($my-app-purple-dark-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-purple-dark-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-purple-dark-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Pink-BlueGrey light
+$my-app-pink-light-primary: mat-palette($mat-pink, 700);
+$my-app-pink-light-accent: mat-palette($mat-blue-grey, A200);
+$my-app-pink-light-warn: mat-palette($mat-red);
+$my-app-pink-light-theme: mat-light-theme($my-app-pink-light-primary, $my-app-pink-light-accent, $my-app-pink-light-warn);
+.pink-light-theme {
+    @include angular-material-theme($my-app-pink-light-theme);
+    @include list-theme ($my-app-pink-light-theme);
+    @include table-theme ($my-app-pink-light-theme);
+    @include dropzone-theme ($my-app-pink-light-theme);
+    @include custom-paging-theme ($my-app-pink-light-theme);
+    background-color: mat-color(map-get($my-app-pink-light-theme, background), background, 1);
+    color: mat-color(map-get($my-app-pink-light-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-pink-light-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-pink-light-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Pink-BlueGrey dark
+$my-app-pink-dark-primary: mat-palette($mat-pink, 700);
+$my-app-pink-dark-accent: mat-palette($mat-blue-grey, A200);
+$my-app-pink-dark-warn: mat-palette($mat-red);
+$my-app-pink-dark-theme: mat-dark-theme($my-app-pink-dark-primary, $my-app-pink-dark-accent, $my-app-pink-dark-warn);
+.pink-dark-theme {
+    @include angular-material-theme($my-app-pink-dark-theme);
+    @include list-theme ($my-app-pink-dark-theme);
+    @include table-theme ($my-app-pink-dark-theme);
+    @include dropzone-theme ($my-app-pink-dark-theme);
+    @include custom-paging-theme ($my-app-pink-dark-theme);
+    background-color: mat-color(map-get($my-app-pink-dark-theme, background), background, 1);
+    color: mat-color(map-get($my-app-pink-dark-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-pink-dark-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-pink-dark-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Purple-Green light
+$my-app-pg-light-primary: mat-palette($mat-purple, 700);
+$my-app-pg-light-accent: mat-palette($mat-green, A200);
+$my-app-pg-light-warn: mat-palette($mat-red);
+$my-app-pg-light-theme: mat-light-theme($my-app-pg-light-primary, $my-app-pg-light-accent, $my-app-pg-light-warn);
+.pg-light-theme {
+    @include angular-material-theme($my-app-pg-light-theme);
+    @include list-theme ($my-app-pg-light-theme);
+    @include table-theme ($my-app-pg-light-theme);
+    @include dropzone-theme ($my-app-pg-light-theme);
+    @include custom-paging-theme ($my-app-pg-light-theme);
+    background-color: mat-color(map-get($my-app-pg-light-theme, background), background, 1);
+    color: mat-color(map-get($my-app-pg-light-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-pg-light-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-pg-light-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Purple-Green dark
+$my-app-pg-dark-primary: mat-palette($mat-purple, 700);
+$my-app-pg-dark-accent: mat-palette($mat-green, A200);
+$my-app-pg-dark-warn: mat-palette($mat-red);
+$my-app-pg-dark-theme: mat-dark-theme($my-app-pg-dark-primary, $my-app-pg-dark-accent, $my-app-pg-dark-warn);
+.pg-dark-theme {
+    @include angular-material-theme($my-app-pg-dark-theme);
+    @include list-theme ($my-app-pg-dark-theme);
+    @include table-theme ($my-app-pg-dark-theme);
+    @include dropzone-theme ($my-app-pg-dark-theme);
+    @include custom-paging-theme ($my-app-pg-dark-theme);
+    background-color: mat-color(map-get($my-app-pg-dark-theme, background), background, 1);
+    color: mat-color(map-get($my-app-pg-dark-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-pg-dark-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-pg-dark-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Red-Indigo light
+$my-app-red-light-primary: mat-palette($mat-red, 400);
+$my-app-red-light-accent: mat-palette($mat-indigo, A200);
+$my-app-red-light-warn: mat-palette($mat-deep-orange);
+$my-app-red-light-theme: mat-light-theme($my-app-red-light-primary, $my-app-red-light-accent, $my-app-red-light-warn);
+.red-light-theme {
+    @include angular-material-theme($my-app-red-light-theme);
+    @include list-theme ($my-app-red-light-theme);
+    @include table-theme ($my-app-red-light-theme);
+    @include dropzone-theme ($my-app-red-light-theme);
+    @include custom-paging-theme ($my-app-red-light-theme);
+    background-color: mat-color(map-get($my-app-red-light-theme, background), background, 1);
+    color: mat-color(map-get($my-app-red-light-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-red-light-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-red-light-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+//Red-Indigo dark
+$my-app-red-dark-primary: mat-palette($mat-red, 400);
+$my-app-red-dark-accent: mat-palette($mat-indigo, A200);
+$my-app-red-dark-warn: mat-palette($mat-deep-orange);
+$my-app-red-dark-theme: mat-dark-theme($my-app-red-dark-primary, $my-app-red-dark-accent, $my-app-red-dark-warn);
+.red-dark-theme {
+    @include angular-material-theme($my-app-red-dark-theme);
+    @include list-theme ($my-app-red-dark-theme);
+    @include table-theme ($my-app-red-dark-theme);
+    @include dropzone-theme ($my-app-red-dark-theme);
+    @include custom-paging-theme ($my-app-red-dark-theme);
+    background-color: mat-color(map-get($my-app-red-dark-theme, background), background, 1);
+    color: mat-color(map-get($my-app-red-dark-theme, foreground), text);
+    main {
+        background-color: mat-color(map-get($my-app-red-dark-theme, background), background, 1);
+    }
+    header {
+        background-color: mat-color(map-get($my-app-red-dark-theme, primary));
+    }
+    header:not(.section-header) {
+        span {
+            color: white;
+        }
+    }
+}
+
+$custom-typography: mat-typography-config( $font-family: 'Poppins, sans-serif');
+@include mat-core($custom-typography);

@@ -1,0 +1,82 @@
+<div class="help-container">
+  <div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h2><span [innerHTML]="title"></span></h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <section *ngIf="tabIndex == 1" id="index-section" class="index-section">
+          <section class="summary-section">
+            <span>This app accepts a single mapping spreadsheet through the dropzone upload component. It will then
+              parse the mapping document and generates different insert/import scripts for each import table
+              mapping. This page will provide details on how to use this app and will expose you to the aspect
+              of how certain option/feature works</span>
+          </section>
+          <section class="app-howto-section">
+            <header class="section-header">
+              <h4><span [innerHTML]="'Application/Tool Functions'"></span></h4>
+            </header>
+            <div class="howto-notes">
+              <span>This app/tool currently offers following functionalities. Please click on the heading to navigate
+                to the respective sections</span>
+
+              <div class="row">
+                <div class="col-auto">
+                  <div class="list-group mt-2">
+
+                    <div class="list-group-item" (click)="goToPage(2)">Upload & Edit Mapping</div>
+
+                    <div class="list-group-item" (click)="goToPage(3)">Export Scripts</div>
+
+                    <div class="list-group-item" (click)="goToPage(4)">View/Edit upload history (with version)</div>
+
+                    <div class="list-group-item" (click)="goToPage(5)">SQL Inline editor</div>
+
+                    <div class="list-group-item" (click)="goToPage(6)">Query Builder (In progress)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section *ngIf="tabIndex == 2" id="upload-mapping-section" class="upload-mapping-section">
+          <app-help-um [themeType]="themeType"></app-help-um>
+        </section>
+        <section *ngIf="tabIndex == 3" id="export-scripts-section" class="export-scripts-section">
+          <app-help-es [themeType]="themeType"></app-help-es>
+        </section>
+        <section *ngIf="tabIndex == 4" id="upload-history-section" class="upload-history-section">
+          <app-help-vuh [themeType]="themeType"></app-help-vuh>
+        </section>
+        <section *ngIf="tabIndex == 5" id="inline-editor-section" class="inline-editor-section">
+          <app-help-ie [themeType]="themeType"></app-help-ie>
+        </section>
+        <section *ngIf="tabIndex == 6" id="query-builder-section" class="query-builder-section">
+          <app-help-qb [themeType]="themeType"></app-help-qb>
+        </section>
+      </mat-card-content>
+        <div class="navigation">
+          <div class="pagination">
+            <section class="corner-page-item" [class.disabled]="tabIndex == 1" (click)="goPrevious()">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </section>
+            <section class="center-page-item">
+              <span class="page-item" [class.disabled]="tabIndex == 1" (click)="goToPage(1)">1</span>
+              <span class="page-item" [class.disabled]="tabIndex == 2" (click)="goToPage(2)">2</span>
+              <span class="page-item" [class.disabled]="tabIndex == 3" (click)="goToPage(3)">3</span>
+              <span class="page-item" [class.disabled]="tabIndex == 4" (click)="goToPage(4)">4</span>
+              <span class="page-item" [class.disabled]="tabIndex == 5" (click)="goToPage(5)">5</span>
+              <span class="page-item" [class.disabled]="tabIndex == 6" (click)="goToPage(6)">6</span>
+            </section>
+            <section class="corner-page-item" [class.disabled]="tabIndex == 6" (click)="goNext()">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </section>
+          </div>
+        </div>
+    </mat-card>
+  </div>
+</div>

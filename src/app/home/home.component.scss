@@ -1,0 +1,234 @@
+@import 'theme.scss';
+.home-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: "header" "content";
+    grid-template-rows: auto minmax(min-content, max-content);
+    grid-template-columns: auto;
+    header {
+        grid-area: header;
+        padding: .5em;
+        text-align: center;
+        width: 100% !important;
+        .menu {
+            display: none;
+        }
+        h1 {
+            padding-top: .3em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        nav>ul {
+            list-style-type: none;
+            display: inline-flex;
+            padding: 0px;
+            margin: 0px;
+            li {
+                margin: .5em;
+                padding: .5em;
+                border-right-width: 1px;
+                border-left-width: 1px;
+                border-color: black;
+                border-radius: 100em;
+                text-align: center;
+            }
+        }
+    }
+    .header-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+            width: 100%;
+            padding-left: 2%;
+        }
+    }
+    .small-screen-title {
+        display: none;
+    }
+    main {
+        height: auto;
+        max-height: 75vh;
+        overflow-y: auto;
+        grid-area: content;
+        box-sizing: border-box;
+        padding-bottom: 2em;
+    }
+    .result {
+        grid-area: result;
+    }
+    @include respond-below (sm) {
+        header {
+            display: flex;
+            .menu {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+            }
+            nav {
+                display: none;
+            }
+            .small-screen-title {
+                display: block;
+            }
+            .wide-screen-title {
+                display: none;
+            }
+        }
+    }
+}
+
+::ng-deep .mat-menu-content {
+    >div {
+        display: flex;
+        justify-content: space-around;
+        &:not(:last-child) {
+            padding-bottom: .5em;
+        }
+    }
+}
+
+div.indigo-pink-light-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #3f51b5, #3f51b5 100%), linear-gradient(135deg, #ff4081, #ff4081), linear-gradient(225deg, #efefef, #efefef), linear-gradient(225deg, #efefef, #efefef);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.indigo-pink-dark-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #3f51b5, #3f51b5 100%), linear-gradient(135deg, #ff4081, #ff4081), linear-gradient(225deg, #000000, #000000), linear-gradient(225deg, #000000, #000000);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.purple-amber-light-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #673ab7, #673ab7 100%), linear-gradient(135deg, #ffd740, #ffd740), linear-gradient(225deg, #efefef, #efefef), linear-gradient(225deg, #efefef, #efefef);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.purple-amber-dark-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #673ab7, #673ab7 100%), linear-gradient(135deg, #ffd740, #ffd740), linear-gradient(225deg, #000000, #000000), linear-gradient(225deg, #000000, #000000);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.pink-pg-light-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #c2185b, #c2185b 100%), linear-gradient(135deg, #b0bec5, #b0bec5), linear-gradient(225deg, #efefef, #efefef), linear-gradient(225deg, #efefef, #efefef);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.pink-pg-dark-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #c2185b, #c2185b 100%), linear-gradient(135deg, #b0bec5, #b0bec5), linear-gradient(225deg, #000000, #000000), linear-gradient(225deg, #000000, #000000);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.purple-green-light-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #7b1fa2, #7b1fa2 100%), linear-gradient(135deg, #69f0ae, #69f0ae), linear-gradient(225deg, #efefef, #efefef), linear-gradient(225deg, #efefef, #efefef);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.purple-green-dark-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #7b1fa2, #7b1fa2 100%), linear-gradient(135deg, #69f0ae, #69f0ae), linear-gradient(225deg, #000000, #000000), linear-gradient(225deg, #000000, #000000);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.red-indigo-light-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #ef5350, #ef5350 100%), linear-gradient(135deg, #3f51b5, #3f51b5), linear-gradient(225deg, #efefef, #efefef), linear-gradient(225deg, #efefef, #efefef);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}
+
+div.red-indigo-dark-option {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #ef5350, #ef5350 100%), linear-gradient(135deg, #3f51b5, #3f51b5), linear-gradient(225deg, #000000, #000000), linear-gradient(225deg, #000000, #000000);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2) !important;
+        transition: transform ease-in-out !important;
+    }
+}

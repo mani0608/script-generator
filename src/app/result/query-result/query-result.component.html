@@ -1,0 +1,42 @@
+<section class="result-container">
+  <div class="container">
+    <hr />
+    <header>
+      <h3><span>Results</span></h3>
+      <div class="header-actions">
+        <button mat-icon-button (click)="exportExcel()" matTooltip="Export Excel" matTooltipPosition="below">
+          <mat-icon fontSet="fa" fontIcon="fa-file-excel-o"></mat-icon>
+        </button>
+        <button (click)="exportSQLSingle()" mat-icon-button matTooltip="Export: Single SQL File" matTooltipPosition="below">
+          <mat-icon fontSet="fa" fontIcon="fa-file-o"></mat-icon>
+        </button>
+        <button (click)="exportSQLMultiple()" mat-icon-button matTooltip="Export: Multiple SQL Files"
+          matTooltipPosition="below">
+          <mat-icon fontSet="fa" fontIcon="fa-copy"></mat-icon>
+        </button>
+      </div>
+    </header>
+    <div *ngIf="docs; then resultcontent else emptycontent"></div>
+    <ng-template #resultcontent>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let item of docs; let i = index" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h5><span [innerHTML]="item.sourceTable"></span></h5>
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-result-grid [data]="item.destTableQueries" [pIndex]="i" [versionCount]="versionCount"
+          (reviewMultiple)="reviewMultipleQueries($event)" (reviewSingle)="reviewSingleQuery($event)"
+          (compareSingle)="compareSingleQuery($event)" (compareMultiple)="compareMultipleQueries($event)"></app-result-grid>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-template>
+    <ng-template #emptycontent>
+      <section class="blockquote empty-content">
+        <span>No results to display</span>
+      </section>
+    </ng-template>
+  </div>
+</section>

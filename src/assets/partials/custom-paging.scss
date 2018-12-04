@@ -1,0 +1,13 @@
+@mixin custom-paging-theme ($theme) {
+    .navigation {
+        background-color: mat-color(map-get($theme, primary));
+        color: white;
+        span {
+            border: 1px solid white;
+        }
+        .page-item.disabled {
+            color: rgba(255, 255, 255, .4);
+            border-color: rgba(255,255,255,.4);
+        }
+    }
+}

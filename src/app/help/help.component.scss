@@ -1,0 +1,74 @@
+@import 'theme.scss';
+.help-container {
+    mat-card {
+        background: transparent;
+        box-shadow: none;
+    }
+    mat-card-header {
+        display: flex;
+        justify-content: center;
+    }
+    mat-card-footer {
+        display: flex;
+        justify-content: flex-end;
+        &>button {
+            margin: .5em;
+        }
+        ul {
+            border-radius: 100em;
+            li:hover {
+                &:first-child:hover {
+                    border-top-left-radius: 2em;
+                    border-bottom-left-radius: 2em;
+                }
+                &:last-child:hover {
+                    border-top-right-radius: 2em;
+                    border-bottom-right-radius: 2em;
+                }
+            }
+        }
+    }
+    .list-group-item {
+        margin: .2em;
+        text-align: center;
+        border-radius: 100em;
+        cursor: pointer;
+    }
+    @include respond-below (sm) {
+        .howto-notes {
+            .row {
+                justify-content: center;
+            }
+        }
+        mat-card-footer {
+            justify-content: center;
+        }
+    }
+}
+
+.navigation {
+    display: flex;
+    border-radius: 100rem;
+    position: fixed;
+    bottom: 1em;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.pagination {
+    width: 100%;
+    justify-content: space-between;
+    >section {
+        display: flex;
+    }
+    span {
+        display: flex;
+        margin: .3em;
+        width: 25px;
+        height: 25px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2rem;
+        cursor: pointer;
+    }
+}

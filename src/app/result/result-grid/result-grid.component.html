@@ -1,0 +1,59 @@
+<section class="result-grid-container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="queryIndex">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <span [innerHTML]="columnLabels[0]"></span>
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <span [innerHTML]="row.queryIndex"></span>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="destinationTable">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <span [innerHTML]="columnLabels[1]"></span>
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <span [innerHTML]="row.destinationTable"></span>
+      </td>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="destinationTableQuery">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <span [innerHTML]="columnLabels[2]"></span>
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <span [innerHTML]="row.destinationTableQuery"></span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button matTooltip="View/Edit query" matTooltipPosition="below" (click)="reviewMultipleQueries()">
+          <mat-icon fontSet="fa" fontIcon="fa-eye"></mat-icon>
+        </button>
+        <button *ngIf="versionCount > 1" mat-icon-button matTooltip="Compare Queries" matTooltipPosition="below" (click)="compareMultipleQueries()">
+          <mat-icon fontSet="fa" fontIcon="fa-balance-scale"></mat-icon>
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <button mat-icon-button matTooltip="View/Edit query" matTooltipPosition="below" (click)="reviewSingleQuery(row)">
+          <mat-icon fontSet="fa" fontIcon="fa-eye"></mat-icon>
+        </button>
+        <button *ngIf="versionCount > 1" mat-icon-button matTooltip="Compare Query" matTooltipPosition="below" (click)="compareSingleQuery(row)">
+          <mat-icon fontSet="fa" fontIcon="fa-balance-scale"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</section>

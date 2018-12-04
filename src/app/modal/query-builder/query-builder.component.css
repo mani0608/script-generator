@@ -1,0 +1,27 @@
+/* div.field-control input:not(:last-child),
+div.case-field input:not(:last-child),
+div.concat-field input:not(:last-child) {
+    margin-right: .2rem;
+} */
+
+
+/* .modal-lg {
+    max-width: 900px;}
+  @media (min-width: 768px) {
+     .modal-lg {
+      width: 100%;
+    } 
+  }
+  @media (min-width: 992px) {
+    .modal-lg {
+      width: 900px;
+    }
+  }
+  
+  .ctrl-border {
+    width: 10px;
+  } */
+
+  .modal-dialog {
+    max-width: fit-content;
+  }

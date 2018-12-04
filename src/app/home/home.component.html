@@ -1,0 +1,63 @@
+<div class="home-container">
+  <header>
+    <div class="header-content">
+      <div class="title">
+        <h1>
+          <span class="wide-screen-title">Import Script Generator</span>
+          <span matTooltip="Import Script Generator" class="small-screen-title">Script Generator</span>
+        </h1>
+      </div>
+      <div class="theme">
+        <div class="theme-menu">
+          <button class="menu-trigger" mat-icon-button [matMenuTriggerFor]="themeMenu">
+            <mat-icon fontSet="fa" fontIcon="fa-paint-brush"></mat-icon>
+          </button>
+          <mat-menu #themeMenu="matMenu">
+            <div class="indigo-pink-section">
+              <div (click)="changeTheme('indigo-light-theme')" class="indigo-pink-light-option"></div>
+              <div (click)="changeTheme('indigo-dark-theme')" class="indigo-pink-dark-option"></div>
+            </div>
+            <div class="purple-amber-section">
+              <div (click)="changeTheme('purple-light-theme')" class="purple-amber-light-option"></div>
+              <div (click)="changeTheme('purple-dark-theme')" class="purple-amber-dark-option"></div>
+            </div>
+            <div class="pink-bg-section">
+              <div (click)="changeTheme('pink-light-theme')" class="pink-pg-light-option"></div>
+              <div (click)="changeTheme('pink-dark-theme')" class="pink-pg-dark-option"></div>
+            </div>
+            <div class="purple-green-section">
+              <div (click)="changeTheme('pg-light-theme')" class="purple-green-light-option"></div>
+              <div (click)="changeTheme('pg-dark-theme')" class="purple-green-dark-option"></div>
+            </div>
+            <div class="red-indigo-section">
+              <div (click)="changeTheme('red-light-theme')" class="red-indigo-light-option"></div>
+              <div (click)="changeTheme('red-dark-theme')" class="red-indigo-dark-option"></div>
+            </div>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li routerLink="/home/upload" routerLinkActive="active"><span>Upload new mapping</span></li>
+        <li routerLink="/home/history" routerLinkActive="active" [class.disabled]="!isHistoryEnabled"><span>View/Edit existing mapping</span></li>
+        <li routerLink="/home/about" routerLinkActive="active"><span>About ISG</span></li>
+        <li routerLink="/home/help" routerLinkActive="active"><span>Help</span></li>
+      </ul>
+    </nav>
+    <div class="menu">
+      <button class="menu-trigger" mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon fontSet="fa" fontIcon="fa-bars"></mat-icon>
+      </button>
+      <mat-menu #appMenu="matMenu">
+        <button routerLink="/home/upload" routerLinkActive="active" mat-menu-item>Upload new mapping</button>
+        <button routerLink="/home/history" routerLinkActive="active" mat-menu-item>View/Edit existing mapping</button>
+        <button routerLink="/home/about" routerLinkActive="active" mat-menu-item>About ISG</button>
+        <button routerLink="/home/help" routerLinkActive="active" mat-menu-item>Help</button>
+      </mat-menu>
+    </div>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

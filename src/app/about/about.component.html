@@ -1,0 +1,56 @@
+<div class="about-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <h2><span [innerHTML]="title"></span></h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <section class="about-content">
+                <section class="about-sidebar">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-ad-list" data-toggle="list"
+                            href="#list-app-details" role="tab" aria-controls="home">App Details</a>
+                        <a class="list-group-item list-group-item-action" id="list-dcl-list" data-toggle="list" href="#list-disclaimer"
+                            role="tab" aria-controls="profile">Disclaimer</a>
+                        <a class="list-group-item list-group-item-action" id="list-ps-list" data-toggle="list" href="#list-prod-specs"
+                            role="tab" aria-controls="messages">Product Specification</a>
+                        <a class="list-group-item list-group-item-action" id="list-ins-list" data-toggle="list" href="#list-install-instruct"
+                            role="tab" aria-controls="settings">Installation Instructions</a>
+                        <a class="list-group-item list-group-item-action" id="list-pn-list" data-toggle="list" href="#list-prod-notes"
+                            role="tab" aria-controls="settings">Product Notes</a>
+                        <a class="list-group-item list-group-item-action" id="list-nrp-list" data-toggle="list" href="#list-nr-plans"
+                            role="tab" aria-controls="settings">Next Release Plans</a>
+                        <a class="list-group-item list-group-item-action" id="list-ctb-list" data-toggle="list" href="#list-contrib-plans"
+                            role="tab" aria-controls="settings">Credits</a>
+                    </div>
+                </section>
+                <section class="about-details">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="list-app-details" role="tabpanel" aria-labelledby="list-ad-list">
+                            <app-details></app-details>
+                        </div>
+                        <div class="tab-pane fade" id="list-disclaimer" role="tabpanel" aria-labelledby="list-dcl-list">
+                            <app-disclaimer></app-disclaimer>
+                        </div>
+                        <div class="tab-pane fade" id="list-prod-specs" role="tabpanel" aria-labelledby="list-ps-list">
+                            <app-specs></app-specs>
+                        </div>
+                        <div class="tab-pane fade" id="list-install-instruct" role="tabpanel" aria-labelledby="list-ins-list">
+                            <app-instructions></app-instructions>
+                        </div>
+                        <div class="tab-pane fade" id="list-prod-notes" role="tabpanel" aria-labelledby="list-pn-list">
+                            <app-notes></app-notes>
+                        </div>
+                        <div class="tab-pane fade" id="list-nr-plans" role="tabpanel" aria-labelledby="list-nrp-list">
+                            <app-plans></app-plans>
+                        </div>
+                        <div class="tab-pane fade" id="list-contrib-plans" role="tabpanel" aria-labelledby="list-ctb-list">
+                            <app-credits></app-credits>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,74 @@
+<section class="review-scripts-container">
+  <div class="container">
+    <hr />
+    <div class="jumbotron jumbotron-fluid page-header">
+      <div class="header-wrapper">
+        <h4><span [innerHTML]="title"></span></h4>
+      </div>
+    </div>
+    <div *ngIf="data; then resultcontent else emptycontent"></div>
+    <ng-template #resultcontent>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let item of data; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span [innerHTML]="item.sourceTable"></span>
+              <span [innerHTML]="item.sourceTableAlias"></span>
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <div *ngFor="let it of item.importTables; let j = index">
+              <div class="d-flex p-2 bd-highlight">
+                <div *ngIf="it.itqInstances.length > 1; then hasChild else noChild"></div>
+                <ng-template #hasChild>
+                  <mat-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+                      <li class="mat-tree-node">
+                        <span [innerHTML]="node.fileName"></span>
+                        <span>:</span>
+                        <span [innerHTML]="node.type"></span>
+                        <span *ngIf="node.data.isDoAction" matTooltip="Build Query" matTooltipPosition="right" class="action-items fa fa-wrench"
+                          (click)="launchBuilder(i, j, node.data.instIdx)"></span>
+                      </li>
+                    </mat-tree-node>
+                    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasNestedChild">
+                      <li>
+                        <div class="mat-tree-node">
+                          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.fileName">
+                            <mat-icon *ngIf="nestedTreeControl.isExpanded(node)" fontSet="fa" fontIcon="fa-chevron-circle-down"
+                              class="mat-icon-rtl-mirror">
+                            </mat-icon>
+                            <mat-icon *ngIf="!nestedTreeControl.isExpanded(node)" fontSet="fa" fontIcon="fa-chevron-circle-right"
+                              class="mat-icon-rtl-mirror">
+                            </mat-icon>
+                          </button>
+                          <span class="p-2" [innerHTML]="node.fileName"></span>
+                          <span *ngIf="node.data.isDoAction" pTooltip="Build Query" tooltipPosition="right" class="action-items p-2 fa fa-wrench"
+                            (click)="launchBuilder(i, j, node.data.instIdx)"></span>
+                        </div>
+                        <ul [class.example-tree-invisible]="!nestedTreeControl.isExpanded(node)">
+                          <ng-container matTreeNodeOutlet></ng-container>
+                        </ul>
+                      </li>
+                    </mat-nested-tree-node>
+                  </mat-tree>
+                </ng-template>
+                <ng-template #noChild>
+                  <span class="p-2" [innerHTML]="it.importTableName"></span>
+                  <span pTooltip="Build Query" tooltipPosition="right" class="action-items p-2 fa fa-wrench" (click)="launchBuilder(i, j, 0)"></span>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-template>
+    <ng-template #emptycontent>
+      <section class="blockquote empty-content">
+        <span>No results to display</span>
+      </section>
+    </ng-template>
+  </div>
+  <app-query-builder></app-query-builder>
+</section>

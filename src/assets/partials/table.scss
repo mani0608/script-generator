@@ -1,0 +1,16 @@
+@mixin table-theme ($theme) {
+    .table {
+        tr {
+            background-color: mat-color(map-get($theme, background), background, .3);
+            td {
+                border: 1px solid  mat-color(map-get($theme, accent));
+            }
+        }
+        tr > td:last-child:hover {
+            background-color: mat-color(map-get($theme, accent), default, .3);
+        }
+        th {
+            border: 1px solid mat-color(map-get($theme, accent));
+        }
+    }
+}

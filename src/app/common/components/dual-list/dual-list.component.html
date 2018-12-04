@@ -1,0 +1,16 @@
+<div class="dual-list-container">
+  <section class="dual-list-source">
+    <ul class="list-group">
+      <li [ngClass]="{'list-group-item': true, 'active': selectedSourceIndex === i}" (click)="populateTarget(i, item.value)" *ngFor="let item of source; index as i; first as isFirst">
+        <span [innerHTML]="item.label"></span>
+      </li>
+    </ul>
+  </section>
+  <section class="dual-list-target">
+      <ul class="list-group">
+        <li [ngClass]="{'list-group-item': true, 'active': selectedTargetIndex === i}" (click)="search(i, item.value)" *ngFor="let item of target; index as i; first as isFirst">
+          <span [ngClass]="{'active': isFirst}" [innerHTML]="item.label"></span>
+        </li>
+      </ul>
+    </section>
+</div>

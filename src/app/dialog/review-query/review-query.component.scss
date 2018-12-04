@@ -1,0 +1,35 @@
+@import 'theme.scss';
+.rq-dialog-container {
+    table {
+        text-align: center;
+        tr {
+            td {
+                border-top: 0px !important;
+            }
+        }
+        th:first-child {
+            border-top-left-radius: 2rem;
+        }
+        th:last-child {
+            border-top-right-radius: 2rem;
+        }
+        thead {
+            tr:first-child {
+                border-top-left-radius: 2rem;
+                border-top-right-radius: 2rem;
+            }
+        }
+        tbody {
+            tr:last-child {
+                border-bottom-left-radius: 2rem;
+                border-bottom-right-radius: 2rem;
+            }
+            tr > td:last-child {
+                text-align: left;
+            }
+            tr > td:last-child:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

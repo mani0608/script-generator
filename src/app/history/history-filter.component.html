@@ -1,0 +1,59 @@
+<section *ngIf="state == 'in'" id="history-section" class="history-section">
+  <div class="container d-flex justify-content-center">
+    <section class="filter-history-bg d-inline-flex align-items-end">
+      <section class="filter-history-bg-visible d-inline-flex align-items-end">
+        <section id="filter-history" class="filter-history text-center">
+          <p-card title="History Filter" styleClass="ui-card-shadow">
+            <p-messages [(value)]="messages"></p-messages>
+            <div class="d-flex justify-content-around pb-2 list-options">
+              <!-- <ng-select [items]="names" [clearable]="false" bindLabel="label" bindValue="value" 
+              placeholder="Select Import" [(ngModel)]="selectedName"
+                (change)="getVersions($event)">
+              </ng-select> -->
+              <p-listbox [options]="names" [(ngModel)]="selectedName" (onChange)="getVersions($event)"></p-listbox>
+              <!-- <ng-select [items]="versions" [clearable]="false" bindLabel="label" bindValue="value" placeholder="Select Version" [disabled]="isVersionDisabled"
+                [(ngModel)]="selectedVersion">
+              </ng-select> -->
+              <p-listbox [options]="versions" [(ngModel)]="selectedVersion" [disabled]="isVersionDisabled"></p-listbox>
+            </div>
+            <p-footer>
+              <div class="btn-section">
+                <button (click)="search()" pButton type="button" icon="fa-search" pTooltip="Search history" tooltipPosition="bottom" iconPos="left"
+                  class="ui-button-primary"></button>
+                <button (click)="clear()" pButton type="button" icon="fa-eraser" pTooltip="Clear Results" tooltipPosition="bottom" iconPos="left"
+                  class="ui-button-primary"></button>
+                <button (click)="home()" pButton type="button" pTooltip="Back to home" tooltipPosition="bottom" icon="fa-long-arrow-left"
+                  iconPos="left" class="ui-button-secondary"></button>
+                <button (click)="toggleHistorySection()" pButton type="button" icon="fa-compress" pTooltip="Collapse Filter" tooltipPosition="bottom"
+                  iconPos="left" class="ui-button-secondary"></button>
+              </div>
+            </p-footer>
+          </p-card>
+        </section>
+      </section>
+    </section>
+  </div>
+</section>
+<section *ngIf="state == 'out'" id="history-section-actions">
+  <div class="container d-flex justify-content-center">
+    <section class="file-upload text-center">
+      <p-card styleClass="ui-card-shadow">
+        <p-footer>
+          <div class="btn-section">
+            <button (click)="search()" pButton type="button" icon="fa-search" pTooltip="Search history" tooltipPosition="bottom" iconPos="left"
+              class="ui-button-primary"></button>
+            <button (click)="clear()" pButton type="button" icon="fa-eraser" pTooltip="Clear Results" tooltipPosition="bottom" iconPos="left"
+              class="ui-button-primary"></button>
+            <button (click)="home()" pButton type="button" pTooltip="Back to home" tooltipPosition="bottom" icon="fa-long-arrow-left"
+              iconPos="left" class="ui-button-secondary"></button>
+            <button (click)="toggleHistorySection()" pButton type="button" icon="fa-expand" pTooltip="Reveal Filter" tooltipPosition="bottom"
+              iconPos="left" class="ui-button-secondary"></button>
+          </div>
+        </p-footer>
+      </p-card>
+    </section>
+  </div>
+</section>
+<div *ngIf="docs && docs?.length > 0">
+  <app-results [docs]="docs" [docName]="selectedName" [docVersion]="selectedVersion"></app-results>
+</div>

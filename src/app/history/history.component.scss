@@ -1,0 +1,19 @@
+@import 'theme.scss'; 
+
+.history-container {
+
+    mat-card {
+        background: transparent;
+        box-shadow: none;
+    }
+    mat-card-header {
+        display: inline-flex;
+    }
+    mat-card-footer > button {
+        margin: .5em;
+    }
+
+    .filter-container {
+        text-align: center;
+    }
+}

@@ -1,0 +1,18 @@
+@import 'theme.scss'; 
+
+.help-es-container {
+    background: transparent;
+
+    .list-group-item {
+        margin: .2em;
+        text-align: center;
+        border-radius: 100em;
+    }
+
+    .img-container {
+        display: flex;
+        align-items: flex-end;
+        text-align: center !important;
+        padding-top: 1em !important;
+    }
+}
