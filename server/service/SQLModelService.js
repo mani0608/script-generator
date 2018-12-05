@@ -135,6 +135,7 @@ class SQLModelService {
             }
 
         } else {
+            this.queryService.updateRelationshipFlag(true);
             if (!this.hasRelationshipImport) {
                 this.hasRelationshipImport = true;
             }

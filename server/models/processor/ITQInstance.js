@@ -8,6 +8,7 @@ class ITQInstance {
         this.tableJoins = new Array(); //Join
         this.groupByFields = new Array(); 
         this.havingConditions = new Array(); //condition
+        this.isRelationship = false;
     }
 
     setInsertFields(fields) { this.insertFields = fields; }
@@ -29,6 +30,10 @@ class ITQInstance {
     setHavingConditions(conditions) { this.havingConditions = conditions; }
 
     getHavingConditions() { return this.havingConditions; }
+
+    setIsRelationship(flag) { this.isRelationship = flag; }
+
+    getIsRelationship() { return this.isRelationship; }
 
 }
 

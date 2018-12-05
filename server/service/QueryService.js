@@ -39,6 +39,10 @@ class QueryService {
         this.executionData.increamentIQI();
     }
 
+    updateRelationshipFlag(flag) {
+        this.getITQInstance().setIsRelationship(flag);
+    }
+
     addImportQueryInstance() {
         let itqInstance = new ITQInstance();
         this.getITQ().addITQInstance(itqInstance);

@@ -7,6 +7,7 @@ class SQLDestinationTableQuery {
         this.queryIndex = null;
         this.destinationTable = null;
         this.destinationTableQuery = null;
+        this.isRelationship = false;
     }
 
     setQueryIndex(index) {
@@ -31,6 +32,14 @@ class SQLDestinationTableQuery {
 
     getDestinationTableQuery() {
         return this.destinationTableQuery;
+    }
+
+    getIsRelationship() {  
+        return this.isRelationship;
+    }
+
+    setIsRelationship(flag) {
+        this.isRelationship = flag;
     }
 
 }

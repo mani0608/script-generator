@@ -51,7 +51,7 @@ export class ResultService {
     var zip = new JSZip();
 
     _.forEach(records, (record, index, records) => {
-      zip.file(this.createFileName(record.dtn, record.sfx), record.tq + record.dtq);
+      zip.file(this.createFileName(record.dtn, record.fnp), record.dtq);
     });
 
     zip.generateAsync({ type: "blob" })
@@ -62,10 +62,9 @@ export class ResultService {
 
   }
 
-  createFileName(itName: string, suffix: string): string {
-    let name: string = _.toLower(_.camelCase(itName));
-    if (!_.isEmpty(suffix)) name = name + '_' + suffix;
-    return 'create' + name + '.sql';
+  createFileName(itName: string, prefix: string): string {
+    let name: string = prefix + 'create' + _.toLower(_.camelCase(itName));
+    return name + '.sql';
   }
 
 }

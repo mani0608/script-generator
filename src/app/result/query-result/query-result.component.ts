@@ -282,41 +282,112 @@ export class QueryResultComponent implements OnInit, OnDestroy {
     });
   }
 
+
   exportSQLMultiple() {
 
     let records: Array<any> = new Array();
-    let tableIndex: number = 0;
-    let prevDTName = null;
-    let suffix = null;
+    let stName: string;
+    let dtName: string;
+    let nextDTName = null;
+    let fileNamePrefix: string;
     let importSchema: string = '';
+    let mergedDestinationQueries: string = '';
+    let finalQuery: string = '';
+    let queryComment: string = '';
+    let truncateQuery: string = '';
 
     this._service.search(this.docName, this.docVersion).then((response) => {
       let result: Array<any> = response.docs;
-      _.forEach(result, (item, stIndex, items) => {
-        if (!_.isNull(item.importSchema) && _.size(_.trim(item.importSchema)) > 0) {
-          importSchema = item.importSchema + '.' + 'import.';
-        }
-        _.forEach(item.destTableQueries, (dtQuery, dtIndex, dtQueries) => {
-          suffix = '';
+      //      let destQueries =  _.sortBy(_.map(result, _.partial(_.ary(_.pick, 2), _, ['importSchema', 'destTableQueries'])), "destinationTable");
+      const elevatedRecord = _.flatMap(result, (st) => {
+        return _.map(st.destTableQueries, (dt) => {
+          return {
+            sourceTableName: st.sourceTable,
+            importSchema: st.importSchema,
+            destinationTable: dt.destinationTable,
+            destinationTableQuery: dt.destinationTableQuery,
+            isRelationship: dt.isRelationship
+          };
+        })
+      })
+      const groupDestTableRecords: Array<any> = _.flatMap(_.chain(elevatedRecord).groupBy("destinationTable").value());
 
-          if (_.isEqual(prevDTName, dtQuery.destinationTable)) {
-            suffix = '' + _.toString(dtIndex);
+      _.forEach(groupDestTableRecords, (dtQuery, dtIndex, dtQueries) => {
+
+        nextDTName = null;
+        fileNamePrefix = '';
+
+        if (dtIndex + 1 < _.size(groupDestTableRecords)) {
+          nextDTName = groupDestTableRecords[dtIndex + 1].destinationTable;
+        }
+
+        if (dtQuery.isRelationship) {
+          fileNamePrefix = "rel_";
+        }
+
+        stName = _.replace(_.upperCase(dtQuery.destinationTable),  new RegExp(" ","g"), '');
+        dtName = _.replace(_.upperCase(dtQuery.sourceTableName),  new RegExp(" ","g"), '');
+
+        queryComment = '--CREATE ' + dtName + ' FOR ' + stName  + '\n';
+
+        if (!_.isNull(dtQuery.importSchema) && _.size(_.trim(dtQuery.importSchema)) > 0) {
+          importSchema = dtQuery.importSchema + '.' + 'import.';
+        }
+
+        if (nextDTName && _.isEqual(nextDTName, dtQuery.destinationTable)) {
+          mergedDestinationQueries = mergedDestinationQueries + queryComment + dtQuery.destinationTableQuery + '\n\n';
+        } else {
+          nextDTName = null;
+          if (mergedDestinationQueries && mergedDestinationQueries.trim().length > 0) {
+            finalQuery = mergedDestinationQueries + queryComment + dtQuery.destinationTableQuery;
+            mergedDestinationQueries = '';
           } else {
-            prevDTName = dtQuery.destinationTable;
+            finalQuery = queryComment + dtQuery.destinationTableQuery + '\n\n';
           }
 
-          let truncateQuery = 'BEGIN TRY TRUNCATE TABLE ' + importSchema + dtQuery.destinationTable + '\n\n';
+          truncateQuery = 'BEGIN TRY TRUNCATE TABLE ' + importSchema + dtQuery.destinationTable + '\n\n';
           truncateQuery = truncateQuery + ' END TRY \n\n BEGIN CATCH \n\n';
-          truncateQuery = truncateQuery + ' DELETE from ' + importSchema + dtQuery.destinationTable + '\n\n';
+          truncateQuery = truncateQuery + ' DELETE FROM ' + importSchema + dtQuery.destinationTable + '\n\n';
+
+          finalQuery = truncateQuery + finalQuery;
+
+          const splitQuery = _.split(finalQuery, /\r?\n/);
+
+          let prevText = null;
+          let offsetCount = 0;
+
+          //finalQuery = _.chain(splitQuery).map(text => _.replace(text, /\t{2,}/, '')).join('\r\n').value();
+          finalQuery = _.map(splitQuery,  (text) => {
+            let count = text.search(/\S/);
+            if (prevText === null) {
+              prevText = text;
+            } else {
+              if (prevText === '' && text !== '' && text.trim().length > 0 && count > 0) {
+                offsetCount = count;
+                prevText = text;
+              } else if (text === '' || count === 0) {
+                offsetCount = 0;
+                prevText = text;
+              }
+            }
+            
+            if (count > 0) {
+              let repeatCount = 0;
+              if (count > offsetCount + 2) {
+                repeatCount = Math.abs(offsetCount - _.round(count/2));
+              }
+              return _.repeat(' ', repeatCount) + _.replace(text, /\s+/, '');
+            }
+            return text;
+          }).join('\r\n');
 
           let record: any = {
             dtn: dtQuery.destinationTable,
-            sfx: suffix,
-            tq: truncateQuery,
-            dtq: dtQuery.destinationTableQuery + '\n\n'
+            fnp: fileNamePrefix,
+            dtq: finalQuery
           }
           records.push(record);
-        });
+        }
       });
 
       this._rservice.exportAsZipFile(records);

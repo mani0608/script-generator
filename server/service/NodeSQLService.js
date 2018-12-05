@@ -79,6 +79,7 @@ class NodeSQLService {
                 result = sqlformatter.format(result);
 
                 let sqlDTQuery = new SQLDestinationTableQuery();
+                sqlDTQuery.setIsRelationship(itqInst.getIsRelationship());
                 sqlDTQuery.setQueryIndex(index + qIndexOffset + 1);
                 sqlDTQuery.setDestinationTable(itQuery.getImportTableName());
                 sqlDTQuery.setDestinationTableQuery(result);
